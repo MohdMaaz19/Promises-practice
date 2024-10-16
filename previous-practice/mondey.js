@@ -67,6 +67,30 @@ let finalString = ""
 
 //Using promise
 
+// function stringPromise(index) {
+//     return new Promise((resolve) => {
+//         setTimeout(() => {
+//             const string = array[index];
+//             resolve(string);
+//         }, 1000);
+//     });
+// }
+
+// function processString(){
+//     let promise = Promise.resolve();
+//     for(let i=0; i<array.length;i++){
+//         promise = promise.then(() => stringPromise(i))
+//         .then((string)=>{
+//             finalString +=string+" ";
+//             console.log(finalString)
+//         })
+//     }
+// }
+
+// processString();
+
+//Using async await
+
 function stringPromise(index) {
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -76,10 +100,9 @@ function stringPromise(index) {
     });
 }
 
-function processString(){
-    let promise = Promise.resolve();
+async function processString(){
     for(let i=0; i<array.length;i++){
-        promise = promise.then(() => stringPromise(i))
+        await stringPromise(i)
         .then((string)=>{
             finalString +=string+" ";
             console.log(finalString)
@@ -87,4 +110,25 @@ function processString(){
     }
 }
 
-processString()
+processString();
+
+//Call as per sequence
+// let ans = []
+// function callSequence(callback,index){
+//     const randomDelay = Math.random()*10000;
+//     setTimeout(()=>{
+//         const number = Math.random();
+//         ans[index] = number;
+//         callback(ans,randomDelay);
+//     },randomDelay)
+// }
+
+// callSequence((callback,randomDelay)=>{
+//     console.log(callback,randomDelay);
+//     callSequence(()=>{
+//         console.log(callback,randomDelay);
+//         callSequence((callback,randomDelay)=>{
+//             console.log(callback,randomDelay)
+//         },2)
+//     },1)
+// },0)
